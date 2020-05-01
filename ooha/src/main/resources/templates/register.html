@@ -1,0 +1,98 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+
+<link th:href="@{/two_i/lib/bootstrap/css/bootstrap.min.css}"
+	rel="stylesheet">
+	<!-- Libraries CSS Files -->
+<link th:href="@{/two_i/lib/font-awesome/css/font-awesome.min.css}"
+	rel="stylesheet">
+<link th:href="@{/two_i/lib/animate/animate.min.css}" rel="stylesheet">
+<link th:href="@{/two_i/lib/ionicons/css/ionicons.min.css}"
+	rel="stylesheet">
+<link th:href="@{/two_i/lib/owlcarousel/assets/owl.carousel.min.css}"
+	rel="stylesheet">
+<link th:href="@{/two_i/lib/lightbox/css/lightbox.min.css}"
+	rel="stylesheet">
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link th:href="@{/css/login.css}" rel="stylesheet" />
+<link th:href="@{/two_i/css/profile.min.css}" rel="stylesheet" />
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="sidenav">
+	<div class="login-main-text">
+		<h2>
+			User<br> Register
+		</h2>
+		<p>Register New User</p>
+	</div>
+</div>
+<div class="main">
+	<div class="col-md-6 col-sm-12">
+		<div class="hospital-register-form">
+			<form th:action="@{/hospital}" th:object="${userModel}"
+				method="post">
+				<div class="form-group" th:classappend="${#fields.hasErrors('userID')} ? 'input-icon right' : ''">
+					<label>User Name /User ID</label>
+						<input type="text"
+							class="form-control" th:name="*{userID}" 
+							placeholder="Name / ID" /> 
+							<span th:if="${#fields.hasErrors('userID')}" class="text-warning"
+							th:errors="*{userID}"></span>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('firstName')} ? 'input-icon right' : ''">
+					<label>First Name</label>
+						<input type="text"
+							class="form-control" th:name="*{firstName}" 
+							placeholder="First Name" /> 
+							<span th:if="${#fields.hasErrors('firstName')}" class="text-warning"
+							th:errors="*{firstName}"></span>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('lastName')} ? 'input-icon right' : ''">
+					<label>Last Name</label>
+						<input type="text"
+							class="form-control" th:name="*{lastName}" 
+							placeholder="Last Name" /> 
+							<span th:if="${#fields.hasErrors('lastName')}" class="text-warning"
+							th:errors="*{lastName}"></span>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('mobile')} ? 'input-icon right' : ''">
+					<label>Mobile</label>
+						<input type="text"
+							class="form-control" th:name="*{mobile}" 
+							placeholder="Mobile" /> 
+							<span th:if="${#fields.hasErrors('mobile')}" class="text-warning"
+							th:errors="*{mobile}"></span>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('address')} ? 'input-icon right' : ''">
+					<label>Address</label>
+						<textarea 
+							class="form-control" th:name="*{address}" 
+							placeholder="Address" ></textarea> 
+							<span th:if="${#fields.hasErrors('address')}" class="text-warning"
+							th:errors="*{address}"></span>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('country')} ? 'input-icon right' : ''">
+					<label>Country</label>
+						<input type="text"
+							class="form-control" th:name="*{country}" 
+							placeholder="Name / ID" /> 
+							<span th:if="${#fields.hasErrors('country')}" class="text-warning"
+							th:errors="*{country}"></span>
+				</div>
+				<div class="form-group" th:classappend="${#fields.hasErrors('belongToWhichHospitalId')} ? 'input-icon right' : ''">
+					<label>User Name /User ID</label>
+						<input type="text"
+							class="form-control" th:name="*{belongToWhichHospitalId}" 
+							placeholder="Name / ID" /> 
+							<span th:if="${#fields.hasErrors('belongToWhichHospitalId')}" class="text-warning"
+							th:errors="*{belongToWhichHospitalId}"></span>
+				</div>
+				
+				
+				<button type="submit" class="btn btn-black">Register</button>
+			</form>
+		</div>
+	</div>
+</div>

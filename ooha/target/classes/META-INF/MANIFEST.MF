@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Spring Security - eledger
+Implementation-Version: 1.0.0-SNAPSHOT
+Built-By: dkumbar
+Implementation-Vendor-Id: com.eledger
+Build-Jdk: 1.8.0_231
+Implementation-URL: http://projects.spring.io/spring-boot/eledger/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

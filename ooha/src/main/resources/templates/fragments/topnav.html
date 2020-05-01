@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<body>
+	<th:block th:fragment="topnav">
+		<!-- [ Pre-loader ] start -->
+		<div class="loader-bg">
+			<div class="loader-track">
+				<div class="loader-fill"></div>
+			</div>
+		</div>
+		<!-- [ Pre-loader ] End -->
+		<!-- [ navigation menu ] start -->
+		<nav class="pcoded-navbar">
+			<div class="navbar-wrapper">
+				<div class="navbar-brand header-logo">
+					<a href="index.html" class="b-brand">
+						<div class="b-bg">
+							<img th:src="@{/images/logo.png}" style="width: 51px;" />
+						</div> <span class="b-title">ooha</span>
+					</a> <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+				</div>
+				<div class="navbar-content scroll-div">
+					<ul class="nav pcoded-inner-navbar">
+						<li class="nav-item pcoded-menu-caption"><label>Navigation</label>
+						</li>
+						<li class="nav-item"><a th:href="dashboard" class="nav-link "><span
+								class="pcoded-micon"><img
+									th:src="@{/images/all-new/dashboard.png}" /></span><span
+								class="pcoded-mtext">Dashboard</span></a></li>
+						<li class="nav-item pcoded-menu-caption"><label>Element</label></li>
+						<li class="nav-item pcoded-hasmenu"><a href="javascript:"
+							class="nav-link "><span class="pcoded-micon"> <img
+									th:src="@{/images/all-new/inventory.png}" /></span><span
+								class="pcoded-mtext">Inventory</span></a>
+							<ul class="pcoded-submenu" id="patientData">
+								<li class=""><a th:href="new_inventory" onclick="" class="">New
+										Inventory</a></li>
+								<li class=""><a th:href="inventory_report" class="">Inventory
+										Report</a></li>
+							</ul></li>
+
+						<li class="nav-item pcoded-hasmenu"><a href="javascript:"
+							class="nav-link "><span class="pcoded-micon"><img
+									th:src="@{/images/all-new/othersinventory.png}" /></span><span
+								class="pcoded-mtext">Inventory of Others</span></a>
+							<ul class="pcoded-submenu">
+								<li class=""><a th:href="others_inventory_report" class="">Inventory
+										Report</a></li>
+							</ul></li>
+
+
+						<li class="nav-item pcoded-hasmenu"><a href="javascript:"
+							class="nav-link "><span class="pcoded-micon"><img
+									th:src="@{/images/all-new/ebook.png}" /></span><span
+								class="pcoded-mtext">Campaign</span></a>
+							<ul class="pcoded-submenu">
+								<li class=""><a href="" class="">Add Campaign</a></li>
+								<li class=""><a href="bc_badges.html" class="">Today's
+										Campaign</a></li>
+								<li class=""><a href="bc_breadcrumb-pagination.html"
+									class="">Campaign Calendar</a></li>
+								<li class=""><a href="bc_collapse.html" class="">Campaign
+										Search</a></li>
+							</ul></li>
+
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- [ navigation menu ] end -->
+
+	</th:block>
+</body>
+</html>

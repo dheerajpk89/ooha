@@ -1,0 +1,34 @@
+server:
+  port: 8089
+
+spring:
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+    content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+    # excluded-view-names:
+    # template-resolver-order:
+    # view-names:
+  data:
+    mongodb:
+     # host: localhost
+     # port: 27017
+      database: bmfjr73het4tagv
+      uri: mongodb://u2pfoanxubcuv1cdopzy:nd2C3RVocpdIaxVBJwvJ@bmfjr73het4tagv-mongodb.services.clever-cloud.com:27017/bmfjr73het4tagv
+      repositories:
+        enabled:  true
+     
+logging:
+  level:
+    root: WARN
+    com.memorynotfound: DEBUG
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    
+  
