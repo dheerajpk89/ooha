@@ -22,22 +22,19 @@
 				</div>
 				<div class="navbar-content scroll-div">
 					<ul class="nav pcoded-inner-navbar">
-						<li class="nav-item pcoded-menu-caption"><label>Navigation</label>
-						</li>
 						<li class="nav-item"><a th:href="dashboard" class="nav-link "><span
 								class="pcoded-micon"><img
 									th:src="@{/images/all-new/dashboard.png}" /></span><span
 								class="pcoded-mtext">Dashboard</span></a></li>
-						<li class="nav-item pcoded-menu-caption"><label>Element</label></li>
 						<li class="nav-item pcoded-hasmenu"><a href="javascript:"
 							class="nav-link "><span class="pcoded-micon"> <img
 									th:src="@{/images/all-new/inventory.png}" /></span><span
-								class="pcoded-mtext">Inventory</span></a>
+								class="pcoded-mtext">Assets</span></a>
 							<ul class="pcoded-submenu" id="patientData">
-								<li class=""><a th:href="new_inventory" onclick="" class="">New
-										Inventory</a></li>
-								<li class=""><a th:href="inventory_report" class="">Inventory
-										Report</a></li>
+								<li class=""><a th:href="asset_add" onclick="" class="">Add Assets</a></li>
+								<li class=""><a th:href="asset_calendar" onclick="" class="">Assets Calendar</a></li>
+								<li class=""><a th:href="assets_list" class="">Assets List</a></li>
+								<li class=""><a th:href="assets_map" class="">Assets Map</a></li>
 							</ul></li>
 
 						<li class="nav-item pcoded-hasmenu"><a href="javascript:"

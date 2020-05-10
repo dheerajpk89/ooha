@@ -27,21 +27,32 @@
 <!-- animation css -->
 <link rel="stylesheet"
 	th:href="@{/plugins/animation/css/animate.min.css}">
+
+<link rel="stylesheet" th:href="@{/plugins/chart-morris/css/morris.css}">
 <!-- vendor css -->
 <link rel="stylesheet" th:href="@{/css/style.css}">
 <link th:href="@{/two_i/img/logo.png}">
+
 </head>
 <body>
 	<th:block th:replace="fragments/header :: header" />
 	<th:block layout:fragment="content" />
 
-
 	<script th:src="@{/js/vendor-all.min.js}"></script>
 	<script th:src="@{/js/custom.js}"></script>
-	<script th:src="@{/js/pages/chart-morris-custom.js}"></script>
 	<script th:src="@{/js/pages/google-maps.js}"></script>
 	<script th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/pcoded.min.js}"></script>
+
+	
+	<script th:src="@{/plugins/chart-morris/js/raphael.min.js}"></script>
+	<script th:src="@{/plugins/chart-morris/js/morris.min.js}"></script>
+	<script th:src="@{/js/pages/chart-morris-custom.js}"></script>
+    <script th:src="@{/plugins/google-maps/js/gmaps.js}"></script>
+    <script th:src="@{/js/pages/google-maps.js}"></script>
+    
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 </body>
 <th:block th:replace="fragments/footer :: footer" />
 </html>

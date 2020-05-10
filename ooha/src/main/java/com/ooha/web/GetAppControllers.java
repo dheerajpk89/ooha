@@ -76,5 +76,25 @@ public class GetAppControllers {
 		return "others_inventory_report";
 	}
 	
+	@RequestMapping(value = "/asset_add", method = RequestMethod.GET)
+	public String assetAdd() {
+		return "asset_add";
+	}
+	
+	@RequestMapping(value = "/asset_calendar", method = RequestMethod.GET)
+	public String assetCalendar() {
+		return "asset_calendar";
+	}
+	
+	@RequestMapping(value = "/assets_list", method = RequestMethod.GET)
+	public String assetsList() {
+		return "assets_list";
+	}
+	
+	@RequestMapping(value = "/assets_map", method = RequestMethod.GET)
+	public String assetsMap() {
+		return "assets_map";
+	}
+	
 
 }
