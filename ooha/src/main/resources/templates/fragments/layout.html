@@ -33,6 +33,18 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 <link th:href="@{/two_i/img/logo.png}">
 
+<!-- fullcalendar -->
+<link th:href='@{/fullcalendar/css/fullcalendar_bootstrap.css}'
+	rel='stylesheet' />
+<link th:href='@{/fullcalendar/css/fullcalendar_core.css}'
+	rel='stylesheet' />
+<link th:href='@{/fullcalendar/css/fullcalendar_daygrid.css}'
+	rel='stylesheet' />
+<link th:href='@{/fullcalendar/css/fullcalendar_list.css}'
+	rel='stylesheet' />
+<link th:href='@{/fullcalendar/css/fullcalendar_timegrid.css}'
+	rel='stylesheet' />
+
 </head>
 <body>
 	<th:block th:replace="fragments/header :: header" />
@@ -44,15 +56,51 @@
 	<script th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/pcoded.min.js}"></script>
 
-	
+
 	<script th:src="@{/plugins/chart-morris/js/raphael.min.js}"></script>
 	<script th:src="@{/plugins/chart-morris/js/morris.min.js}"></script>
 	<script th:src="@{/js/pages/chart-morris-custom.js}"></script>
-    <script th:src="@{/plugins/google-maps/js/gmaps.js}"></script>
-    <script th:src="@{/js/pages/google-maps.js}"></script>
-    
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script th:src="@{/plugins/google-maps/js/gmaps.js}"></script>
+	<script th:src="@{/js/pages/google-maps.js}"></script>
+
+	<script th:src='@{/fullcalendar/js/fullcalendar.io.js}'></script>
+	<script th:src='@{/fullcalendar/js/fullcalendar_core.js}'></script>
+	<script th:src='@{/fullcalendar/js/fullcalendar_daygrid.js}'></script>
+	<script th:src='@{/fullcalendar/js/fullcalendar_list.js}'></script>
+	<script th:src='@{/fullcalendar/js/fullcalendar_timegrid.js}'></script>
+	<script th:src='@{/fullcalendar/js/main.min.js}'></script>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+
+			var calendarEl = document.getElementById('calendar');
+
+			var calendar = new FullCalendar.Calendar(calendarEl, {
+				plugins : [ 'dayGrid', 'timeGrid', 'list', 'bootstrap' ],
+				timeZone : 'UTC',
+				themeSystem : 'bootstrap',
+				header : {
+					left : 'prev,next today',
+					center : 'title',
+					right : 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+				},
+				weekNumbers : true,
+				eventLimit : true,
+				events : [ {
+					title : 'my event',
+					start : '2020-05-15'
+				}, {
+					title : 'my event 3',
+					start : '2020-05-17'
+				} ]
+			});
+			calendar.render();
+		});
+	</script>
+
+	<script
+		src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 </body>
 <th:block th:replace="fragments/footer :: footer" />
 </html>
