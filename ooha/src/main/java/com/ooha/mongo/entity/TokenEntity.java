@@ -37,7 +37,7 @@ public class TokenEntity {
 	@Field("createdDate")
 	private String createdDate;
 
-	@Indexed(name = "timeToLeave", expireAfterSeconds = 30)
+	@Indexed(name = "timeToLeave", expireAfterSeconds = 7200)
 	@Builder.Default
 	private Date timeToLeave=new Date();
 }

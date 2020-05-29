@@ -41,4 +41,9 @@ public class DaoServicesImpl implements DaoServices {
 		return tokenRepository.getById(id);
 	}
 
+	@Override
+	public void deleteToken(TokenEntity token) {
+		tokenRepository.delete(token);
+	}
+
 }

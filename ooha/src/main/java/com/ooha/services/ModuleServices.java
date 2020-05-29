@@ -16,4 +16,6 @@ public interface ModuleServices {
 	public String loginUserServices(LoginModel loginModel, HttpServletResponse req);
 
 	public TokenEntity getTokenById(String id);
+	
+	public void deleteToken(TokenEntity token);
 }

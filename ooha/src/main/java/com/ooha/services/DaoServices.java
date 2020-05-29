@@ -12,7 +12,9 @@ public interface DaoServices {
 	public UserEntity getUserDetails(String userId);
 
 	public TokenEntity getTokenByUserOjectId(String userObjectId);
-	
+
 	public TokenEntity getTokenById(String id);
+
+	public void deleteToken(TokenEntity token);
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.filter.GenericFilterBean;
 
 import com.ooha.mongo.entity.TokenEntity;
 import com.ooha.services.ModuleServices;
+import com.ooha.utils.AppCoreConstants;
 import com.ooha.utils.CommonUtill;
 
 @Controller
@@ -33,7 +34,7 @@ public class AccessValidateFilter extends GenericFilterBean {
 		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 		Boolean isvalied = true;
 		/**Checking the url patran is login or other */
-		if (request.getServletPath().equals("/login")) {
+		if (request.getServletPath().equals(AppCoreConstants.PATH_LOGIN.getStringValue())) {
 			/** if method type is POST the user is trying to login to create token*/
 			if (request.getMethod().equals("POST")) {
 				System.out.println(request.getMethod()
@@ -43,21 +44,48 @@ public class AccessValidateFilter extends GenericFilterBean {
 		} else if (checkUrlPath(request.getServletPath())) {
 			/**if not login then we need to validate the token */
 			isvalied = this.validateAppToken(request, response);
+		} else if (request.getServletPath().equals(AppCoreConstants.PATH_LOGOUT.getStringValue())) {
+			this.removeToken(request, response);
+			isvalied = false;
 		}
 		if (!isvalied) {
-			response.sendRedirect("http://"
-					+ request.getServerName()
-					+ ":"
-					+ request.getServerPort()
-					+ "/login");
+			response.sendRedirect(this.redirect(AppCoreConstants.PATH_LOGIN.getStringValue(), request));
 		} else {
 			chain.doFilter(servletRequest, servletResponse);
 		}
 	}
 
+	private String redirect(String finalPath, HttpServletRequest request) {
+		return "http://"
+				+ request.getServerName()
+				+ ":"
+				+ request.getServerPort()
+				+ finalPath;
+	}
+
 	public Boolean validateAppToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Boolean isValied = true;
-		Cookie[] cookies = request.getCookies();
+		String appToken = this.getTokenFromCooke(request.getCookies());
+		if (!CommonUtill.isEmpty(appToken)) {
+			TokenEntity token = services.getTokenById(appToken);
+			if (CommonUtill.isEmpty(token)) {
+				isValied = false;
+			}
+		}
+		return isValied;
+	}
+
+	private void removeToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String appToken = this.getTokenFromCooke(request.getCookies());
+		if (!CommonUtill.isEmpty(appToken)) {
+			TokenEntity token = services.getTokenById(appToken);
+			if (!CommonUtill.isEmpty(token)) {
+				services.deleteToken(token);
+			}
+		}
+	}
+
+	private String getTokenFromCooke(Cookie[] cookies) {
 		String appToken = "";
 		if (cookies != null) {
 			for (int i = 0; i < cookies.length; i++) {
@@ -65,18 +93,13 @@ public class AccessValidateFilter extends GenericFilterBean {
 					appToken = cookies[i].getValue();
 				}
 			}
-			if (!CommonUtill.isEmpty(appToken)) {
-				TokenEntity token = services.getTokenById(appToken);
-				if (CommonUtill.isEmpty(token)) {
-					isValied = false;
-				}
-			}
 		}
-		return isValied;
+		return appToken;
 	}
 
 	private Boolean checkUrlPath(String url) {
-		return !url.contains(".css")
+		return !url.contains("/logout")
+				&& !url.contains(".css")
 				&& !url.contains(".js")
 				&& !url.contains(".jpg")
 				&& !url.contains(".png")

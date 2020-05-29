@@ -47,4 +47,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		        .withUser("manager").password("password").roles("patient");*/
 	}
 
+
 }

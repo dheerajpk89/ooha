@@ -46,15 +46,12 @@ public class ModuleServiceImpl implements ModuleServices {
 
 	@Override
 	public String loginUserServices(LoginModel loginModel, HttpServletResponse response) {
-
 		String returnVal = "login";
-
 		UserEntity user = daoServices.getUserDetails(loginModel.getUserId());
 		if (user.getIsUserActive()
 				&& user.getPassword().equals(loginModel.getPassword())) {
 			returnVal = this.validateToken(user, response);
 		}
-
 		return returnVal;
 	}
 
@@ -76,5 +73,10 @@ public class ModuleServiceImpl implements ModuleServices {
 	@Override
 	public TokenEntity getTokenById(String id) {
 		return daoServices.getTokenById(id);
+	}
+
+	@Override
+	public void deleteToken(TokenEntity token) {
+		daoServices.deleteToken(token);
 	}
 }
