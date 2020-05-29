@@ -5,9 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ooha.mongo.model.HospitalModel;
+import com.ooha.mongo.entity.UserEntity;
 import com.ooha.mongo.model.LoginModel;
-import com.ooha.mongo.model.UserModel;
 
 @Controller
 public class GetAppControllers {
@@ -19,9 +18,9 @@ public class GetAppControllers {
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registerGet(Model model) {
-		final UserModel userModel = UserModel.builder().userID("userID").password("password").userType("userType").firstName("firstName")
+		final UserEntity userModel = UserEntity.builder().userID("userID").password("password").userType("userType").firstName("firstName")
 				.lastName("lastName").mobile("mobile").emailId("emailId").address("address").country("country")
-				.belongToWhichHospitalId("belongToWhichHospitalId").build();
+				.build();
 
 		model.addAttribute("userModel", userModel);
 		return "/register";

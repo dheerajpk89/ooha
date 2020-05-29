@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Implementation-Title: Spring Security - eledger
+Implementation-Title: OOHA - ooha
 Implementation-Version: 1.0.0-SNAPSHOT
 Built-By: dkumbar
-Implementation-Vendor-Id: com.eledger
+Implementation-Vendor-Id: com.ooha
 Build-Jdk: 1.8.0_231
-Implementation-URL: http://projects.spring.io/spring-boot/eledger/
+Implementation-URL: http://projects.spring.io/spring-boot/ooha/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
 

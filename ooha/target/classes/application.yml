@@ -1,5 +1,6 @@
 server:
   port: 8089
+  
 
 spring:
   thymeleaf:
@@ -17,15 +18,22 @@ spring:
     # view-names:
   data:
     mongodb:
-     # host: localhost
-     # port: 27017
-      database: bmfjr73het4tagv
-      uri: mongodb://u2pfoanxubcuv1cdopzy:nd2C3RVocpdIaxVBJwvJ@bmfjr73het4tagv-mongodb.services.clever-cloud.com:27017/bmfjr73het4tagv
+      host: localhost
+      port: 27017
+      database: ooha
+     # uri: mongodb://u2pfoanxubcuv1cdopzy:nd2C3RVocpdIaxVBJwvJ@bmfjr73het4tagv-mongodb.services.clever-cloud.com:27017/bmfjr73het4tagv
       repositories:
         enabled:  true
+  output:
+    ansi:
+        enabled: DETECT
      
 logging:
-  level:
+ file: logs/dev_app.log
+ pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+ level:
     root: WARN
     com.memorynotfound: DEBUG
     org.springframework.web: INFO
