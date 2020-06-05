@@ -12,12 +12,16 @@ import com.ooha.mongo.entity.TokenEntity;
 import com.ooha.mongo.entity.UserEntity;
 import com.ooha.mongo.model.LoginModel;
 import com.ooha.utils.CommonUtill;
+import com.ooha.utils.PasswordManager;
 
 @Service
 public class ModuleServiceImpl implements ModuleServices {
 
 	@Autowired
 	private DaoServices daoServices;
+
+	@Autowired
+	private PasswordManager passwordManager;
 
 	@Override
 	public void createUser(UserEntity userEntity) {
@@ -26,6 +30,7 @@ public class ModuleServiceImpl implements ModuleServices {
 		userEntity.setCreatedDate(currentDate.toString());
 		userEntity.setUpdateDate(currentDate.toString());
 		userEntity.setIsUserActive(true);
+		userEntity.setPassword(passwordManager.hash(userEntity.getPassword()));
 		daoServices.createUser(userEntity);
 
 	}
@@ -49,7 +54,7 @@ public class ModuleServiceImpl implements ModuleServices {
 		String returnVal = "login";
 		UserEntity user = daoServices.getUserDetails(loginModel.getUserId());
 		if (user.getIsUserActive()
-				&& user.getPassword().equals(loginModel.getPassword())) {
+				&& passwordManager.checkPassword(loginModel.getPassword(), user.getPassword())) {
 			returnVal = this.validateToken(user, response);
 		}
 		return returnVal;
