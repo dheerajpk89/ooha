@@ -8,11 +8,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public enum AppCoreConstants {
-
+					
 	/**URL Paths */
-	PATH_LOGIN("/login"),
+	SPACE(" ");
 	
-	PATH_LOGOUT("/logout");
 
 	String stringValue;
 }

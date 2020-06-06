@@ -10,6 +10,7 @@
 			</div>
 		</div>
 		<!-- [ Pre-loader ] End -->
+
 		<!-- [ navigation menu ] start -->
 		<nav class="pcoded-navbar">
 			<div class="navbar-wrapper">
@@ -21,83 +22,123 @@
 					</a> <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
 				</div>
 				<div class="navbar-content scroll-div">
-					<ul class="nav pcoded-inner-navbar">
-						<li th:classappend="${#request.getServletPath() == '/dashboard' ? 'nav-item active' : 'nav-item'}" ><a th:href="dashboard" class="nav-link "><span
-								class="pcoded-micon"><img
-									th:src="@{/images/all-new/dashboard.png}" /></span><span
-								class="pcoded-mtext">Dashboard</span></a></li>
-						<li th:classappend="${#request.getServletPath() == '/asset_add' 
+					<div th:if="${user.userType == 'mediaOwner'}">
+						<ul class="nav pcoded-inner-navbar">
+							<li
+								th:classappend="${#request.getServletPath() == '/dashboard' ? 'nav-item active' : 'nav-item'}"><a
+								th:href="dashboard" class="nav-link "><span
+									class="pcoded-micon"><img
+										th:src="@{/images/all-new/dashboard.png}" /></span> <span
+									class="pcoded-mtext">Dashboard</span></a></li>
+							<li
+								th:classappend="${#request.getServletPath() == '/asset_add' 
 						                   || #request.getServletPath() == '/asset_calendar'
 						                   || #request.getServletPath() == '/assets_list' 
-						                   || #request.getServletPath() == '/assets_map' ? 'nav-item pcoded-hasmenu active pcoded-trigger' : 'nav-item pcoded-hasmenu'}"><a href="javascript:"
-							class="nav-link "><span class="pcoded-micon"> <img
-									th:src="@{/images/all-new/inventory.png}" /></span><span
-								class="pcoded-mtext">Assets</span></a>
-							<ul class="pcoded-submenu" id="patientData">
-								<li th:classappend="${#request.getServletPath() == '/asset_add' ? 'active' : ''}"><a th:href="asset_add" onclick="" class="">Add Assets</a></li>
-								<li th:classappend="${#request.getServletPath() == '/asset_calendar' ? 'active' : ''}"><a th:href="asset_calendar" onclick="" class="">Assets Calendar</a></li>
-								<li th:classappend="${#request.getServletPath() == '/assets_list' ? 'active' : ''}"><a th:href="assets_list" class="">Assets List</a></li>
-								<li th:classappend="${#request.getServletPath() == '/assets_map' ? 'active' : ''}"><a th:href="assets_map" class="">Assets Map</a></li>
-							</ul></li>
+						                   || #request.getServletPath() == '/assets_map' ? 'nav-item pcoded-hasmenu active pcoded-trigger' : 'nav-item pcoded-hasmenu'}"><a
+								href="javascript:" class="nav-link "><span
+									class="pcoded-micon"> <img
+										th:src="@{/images/all-new/inventory.png}" /></span><span
+									class="pcoded-mtext">Assets</span></a>
+								<ul class="pcoded-submenu" id="patientData">
+									<li
+										th:classappend="${#request.getServletPath() == '/asset_add' ? 'active' : ''}"><a
+										th:href="asset_add" onclick="" class="">Add Assets</a></li>
+									<li
+										th:classappend="${#request.getServletPath() == '/asset_calendar' ? 'active' : ''}"><a
+										th:href="asset_calendar" onclick="" class="">Assets
+											Calendar</a></li>
+									<li
+										th:classappend="${#request.getServletPath() == '/assets_list' ? 'active' : ''}"><a
+										th:href="assets_list" class="">Assets List</a></li>
+									<li
+										th:classappend="${#request.getServletPath() == '/assets_map' ? 'active' : ''}"><a
+										th:href="assets_map" class="">Assets Map</a></li>
+								</ul></li>
 
-						<li class="nav-item pcoded-hasmenu"><a href="javascript:"
-							class="nav-link "><span class="pcoded-micon"><img
-									th:src="@{/images/all-new/othersinventory.png}" /></span><span
-								class="pcoded-mtext">Inventory of Others</span></a>
-							<ul class="pcoded-submenu">
-								<li class=""><a th:href="others_inventory_report" class="">Inventory
-										Report</a></li>
-							</ul></li>
+							<li class="nav-item pcoded-hasmenu"><a href="javascript:"
+								class="nav-link "><span class="pcoded-micon"><img
+										th:src="@{/images/all-new/othersinventory.png}" /></span><span
+									class="pcoded-mtext">Inventory of Others</span></a>
+								<ul class="pcoded-submenu">
+									<li class=""><a th:href="others_inventory_report" class="">Inventory
+											Report</a></li>
+								</ul></li>
 
 
-						<li class="nav-item pcoded-hasmenu"><a href="javascript:"
-							class="nav-link "><span class="pcoded-micon"><img
-									th:src="@{/images/all-new/ebook.png}" /></span><span
-								class="pcoded-mtext">Campaign</span></a>
-							<ul class="pcoded-submenu">
-								<li class=""><a href="" class="">Add Campaign</a></li>
-								<li class=""><a href="bc_badges.html" class="">Today's
-										Campaign</a></li>
-								<li class=""><a href="bc_breadcrumb-pagination.html"
-									class="">Campaign Calendar</a></li>
-								<li class=""><a href="bc_collapse.html" class="">Campaign
-										Search</a></li>
-							</ul>
-						</li>
-						<li class="nav-item pcoded-hasmenu"><a href="javascript:"
-							class="nav-link "><span class="pcoded-micon"><img
-									th:src="@{/images/all-new/ebook.png}" /></span><span
-								class="pcoded-mtext">Operation</span></a>
-							<ul class="pcoded-submenu">
-								<li class=""><a href="" class="">Add Campaign</a></li>
-							</ul>
-						</li>
-						<li class="nav-item pcoded-hasmenu"><a href="javascript:"
-							class="nav-link "><span class="pcoded-micon"><img
-									th:src="@{/images/all-new/ebook.png}" /></span><span
-								class="pcoded-mtext">Proposals</span></a>
-							<ul class="pcoded-submenu">
-								<li class=""><a href="" class="">Add Campaign</a></li>
-							</ul>
-						</li>
-						<li class="nav-item pcoded-hasmenu"><a href="javascript:"
-							class="nav-link "><span class="pcoded-micon"><img
-									th:src="@{/images/all-new/ebook.png}" /></span><span
-								class="pcoded-mtext">Packages</span></a>
-							<ul class="pcoded-submenu">
-								<li class=""><a href="" class="">Add Campaign</a></li>
-							</ul>
-						</li>
-						<li class="nav-item pcoded-hasmenu"><a href="javascript:"
-							class="nav-link "><span class="pcoded-micon"><img
-									th:src="@{/images/all-new/ebook.png}" /></span><span
-								class="pcoded-mtext">NOC</span></a>
-							<ul class="pcoded-submenu">
-								<li class=""><a href="" class="">Add Campaign</a></li>
-							</ul>
-						</li>
+							<li class="nav-item pcoded-hasmenu"><a href="javascript:"
+								class="nav-link "><span class="pcoded-micon"><img
+										th:src="@{/images/all-new/ebook.png}" /></span><span
+									class="pcoded-mtext">Campaign</span></a>
+								<ul class="pcoded-submenu">
+									<li class=""><a href="" class="">Add Campaign</a></li>
+									<li class=""><a href="bc_badges.html" class="">Today's
+											Campaign</a></li>
+									<li class=""><a href="bc_breadcrumb-pagination.html"
+										class="">Campaign Calendar</a></li>
+									<li class=""><a href="bc_collapse.html" class="">Campaign
+											Search</a></li>
+								</ul></li>
+							<li class="nav-item pcoded-hasmenu"><a href="javascript:"
+								class="nav-link "><span class="pcoded-micon"><img
+										th:src="@{/images/all-new/ebook.png}" /></span><span
+									class="pcoded-mtext">Operation</span></a>
+								<ul class="pcoded-submenu">
+									<li class=""><a href="" class="">Add Campaign</a></li>
+								</ul></li>
+							<li class="nav-item pcoded-hasmenu"><a href="javascript:"
+								class="nav-link "><span class="pcoded-micon"><img
+										th:src="@{/images/all-new/ebook.png}" /></span><span
+									class="pcoded-mtext">Proposals</span></a>
+								<ul class="pcoded-submenu">
+									<li class=""><a href="" class="">Add Campaign</a></li>
+								</ul></li>
+							<li class="nav-item pcoded-hasmenu"><a href="javascript:"
+								class="nav-link "><span class="pcoded-micon"><img
+										th:src="@{/images/all-new/ebook.png}" /></span><span
+									class="pcoded-mtext">Packages</span></a>
+								<ul class="pcoded-submenu">
+									<li class=""><a href="" class="">Add Campaign</a></li>
+								</ul></li>
+							<li class="nav-item pcoded-hasmenu"><a href="javascript:"
+								class="nav-link "><span class="pcoded-micon"><img
+										th:src="@{/images/all-new/ebook.png}" /></span><span
+									class="pcoded-mtext">NOC</span></a>
+								<ul class="pcoded-submenu">
+									<li class=""><a href="" class="">Add Campaign</a></li>
+								</ul></li>
 
-					</ul>
+						</ul>
+					</div>
+					<div th:if="${user.userType == 'operator'}">
+						<ul class="nav pcoded-inner-navbar">
+							<li
+								th:classappend="${#request.getServletPath() == '/dashboard' ? 'nav-item active' : 'nav-item'}"><a
+								th:href="dashboard" class="nav-link "><span
+									class="pcoded-micon"><img
+										th:src="@{/images/all-new/dashboard.png}" /></span> <span
+									class="pcoded-mtext">Dashboard</span></a></li>
+						</ul>
+					</div>
+					<div th:if="${user.userType == 'users'}">
+						<ul class="nav pcoded-inner-navbar">
+							<li
+								th:classappend="${#request.getServletPath() == '/dashboard' ? 'nav-item active' : 'nav-item'}"><a
+								th:href="dashboard" class="nav-link "><span
+									class="pcoded-micon"><img
+										th:src="@{/images/all-new/dashboard.png}" /></span> <span
+									class="pcoded-mtext">Dashboard</span></a></li>
+						</ul>
+					</div>
+					<div th:if="${user.userType == 'others'}">
+						<ul class="nav pcoded-inner-navbar">
+							<li
+								th:classappend="${#request.getServletPath() == '/dashboard' ? 'nav-item active' : 'nav-item'}"><a
+								th:href="dashboard" class="nav-link "><span
+									class="pcoded-micon"><img
+										th:src="@{/images/all-new/dashboard.png}" /></span> <span
+									class="pcoded-mtext">Dashboard</span></a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</nav>

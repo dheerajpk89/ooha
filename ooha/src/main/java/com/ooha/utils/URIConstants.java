@@ -25,4 +25,10 @@ public class URIConstants {
 	public static final String APP_PATH_ASSETS_LIST = "/assets_list";
 
 	public static final String APP_PATH_ASSETS_MAP = "/assets_map";
+
+	public static final String APP_PATH_LOGOUT = "/logout";
+
+	public static final String APP_TOKEN = "app-token";
+
+	public static final String USER_ATTRIBUTE = "user";
 }

@@ -29,7 +29,7 @@ public class PostAppController {
 			model.addAttribute("loginModel", loginModel);
 			return URIConstants.APP_PATH_LOGIN;
 		}
-		return services.loginUserServices(loginModel, req);
+		return services.loginUserServices(loginModel, req,model);
 	}
 
 	@RequestMapping(value = URIConstants.APP_PATH_REGISTER, method = RequestMethod.POST)

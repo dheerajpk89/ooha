@@ -7,12 +7,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.ooha.mongo.entity.TokenEntity;
 import com.ooha.mongo.entity.UserEntity;
 import com.ooha.mongo.model.LoginModel;
 import com.ooha.utils.CommonUtill;
 import com.ooha.utils.PasswordManager;
+import com.ooha.utils.URIConstants;
 
 @Service
 public class ModuleServiceImpl implements ModuleServices {
@@ -50,28 +52,28 @@ public class ModuleServiceImpl implements ModuleServices {
 	}
 
 	@Override
-	public String loginUserServices(LoginModel loginModel, HttpServletResponse response) {
-		String returnVal = "login";
+	public String loginUserServices(LoginModel loginModel, HttpServletResponse response, Model model) {
+		String returnVal = URIConstants.APP_PATH_LOGIN;
 		UserEntity user = daoServices.getUserDetails(loginModel.getUserId());
 		if (user.getIsUserActive()
 				&& passwordManager.checkPassword(loginModel.getPassword(), user.getPassword())) {
-			returnVal = this.validateToken(user, response);
+			returnVal = this.validateToken(user, response, model);
 		}
 		return returnVal;
 	}
 
-	private String validateToken(UserEntity user, HttpServletResponse response) {
+	private String validateToken(UserEntity user, HttpServletResponse response, Model model) {
 		TokenEntity token = daoServices.getTokenByUserOjectId(user.getId());
 		if (CommonUtill.isEmpty(token)) {
 			token = TokenEntity.builder().roleType(user.getUserType()).userOjectId(user.getId()).userID(user.getUserID()).build();
 			this.createToken(token);
 			token = daoServices.getTokenByUserOjectId(user.getId());
 		}
-
-		Cookie cookie = new Cookie("app-token", token.getId());
+		model.addAttribute(URIConstants.USER_ATTRIBUTE, user);
+		Cookie cookie = new Cookie(URIConstants.APP_TOKEN, token.getId());
 		//add cookie to response
 		response.addCookie(cookie);
-		return "dashboard";
+		return URIConstants.APP_PATH_DASHBOARD;
 
 	}
 
