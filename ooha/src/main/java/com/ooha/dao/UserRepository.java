@@ -8,4 +8,6 @@ public interface UserRepository extends MongoRepository<UserEntity, String> {
 
 	public UserEntity getByUserID(String userID);
 
+	public UserEntity getById(String id);
+
 }

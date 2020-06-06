@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import org.springframework.web.filter.GenericFilterBean;
 
 import com.ooha.mongo.entity.TokenEntity;
 import com.ooha.services.ModuleServices;
-import com.ooha.utils.AppCoreConstants;
 import com.ooha.utils.CommonUtill;
 import com.ooha.utils.URIConstants;
 
@@ -73,6 +73,7 @@ public class AccessValidateFilter extends GenericFilterBean {
 				isValied = false;
 			}
 		}
+
 		return isValied;
 	}
 
@@ -90,7 +91,7 @@ public class AccessValidateFilter extends GenericFilterBean {
 		String appToken = "";
 		if (cookies != null) {
 			for (int i = 0; i < cookies.length; i++) {
-				if ("app-token".equals(cookies[i].getName())) {
+				if (URIConstants.APP_TOKEN.equals(cookies[i].getName())) {
 					appToken = cookies[i].getValue();
 				}
 			}
@@ -108,4 +109,5 @@ public class AccessValidateFilter extends GenericFilterBean {
 				&& !url.contains(".woff")
 				&& !url.contains(".woff2");
 	}
+
 }

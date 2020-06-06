@@ -16,5 +16,7 @@ public interface DaoServices {
 	public TokenEntity getTokenById(String id);
 
 	public void deleteToken(TokenEntity token);
+	
+	public UserEntity getUserDetailsById(String id);
 
 }

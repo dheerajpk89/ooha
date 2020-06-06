@@ -3,6 +3,7 @@ package com.ooha.services;
 import java.util.Date;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,10 +70,10 @@ public class ModuleServiceImpl implements ModuleServices {
 			this.createToken(token);
 			token = daoServices.getTokenByUserOjectId(user.getId());
 		}
-		model.addAttribute(URIConstants.USER_ATTRIBUTE, user);
 		Cookie cookie = new Cookie(URIConstants.APP_TOKEN, token.getId());
 		//add cookie to response
 		response.addCookie(cookie);
+		model.addAttribute(URIConstants.USER_ATTRIBUTE, daoServices.getUserDetailsById(token.getUserOjectId()));
 		return URIConstants.APP_PATH_DASHBOARD;
 
 	}
@@ -85,5 +86,33 @@ public class ModuleServiceImpl implements ModuleServices {
 	@Override
 	public void deleteToken(TokenEntity token) {
 		daoServices.deleteToken(token);
+	}
+
+	@Override
+	public UserEntity getUserDetailsById(String id) {
+		return daoServices.getUserDetailsById(id);
+	}
+
+	@Override
+	public UserEntity getUserByCookie(HttpServletRequest request) {
+		UserEntity userEntity = null;
+		TokenEntity tokenEntity = daoServices.getTokenById(this.getTokenFromCooke(request.getCookies()));
+		if (!CommonUtill.isEmpty(tokenEntity)) {
+			userEntity = daoServices.getUserDetailsById(tokenEntity.getUserOjectId());
+		}
+		return userEntity;
+
+	}
+
+	private String getTokenFromCooke(Cookie[] cookies) {
+		String appToken = "";
+		if (cookies != null) {
+			for (int i = 0; i < cookies.length; i++) {
+				if (URIConstants.APP_TOKEN.equals(cookies[i].getName())) {
+					appToken = cookies[i].getValue();
+				}
+			}
+		}
+		return appToken;
 	}
 }
